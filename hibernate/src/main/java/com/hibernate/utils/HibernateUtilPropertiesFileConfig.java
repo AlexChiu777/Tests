@@ -1,7 +1,7 @@
-package com.hibernate.data.utils;
+package com.hibernate.utils;
 
 
-import com.hibernate.data.entities.User;
+import com.hibernate.data.entities.tutorial.User;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;

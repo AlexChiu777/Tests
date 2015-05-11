@@ -1,4 +1,4 @@
-package com.hibernate.data.entities;
+package com.hibernate.data.entities.tutorial;
 
 import javax.persistence.*;
 import java.util.Date;

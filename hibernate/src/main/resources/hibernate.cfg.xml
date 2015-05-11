@@ -9,7 +9,7 @@
     <session-factory>
         <!-- properties -->
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/test</property>
+        <property name="connection.url">jdbc:mysql://localhost:3306/sakila</property>
         <property name="connection.username">root</property>
         <property name="connection.password">Ac120788</property>
 
@@ -19,7 +19,21 @@
         <!--echo to Stdout-->
         <property name="show_sql">true</property>
 
-        <mapping class="com.hibernate.data.entities.User"/>
+        <mapping class="com.hibernate.data.entities.sakila.Address"/>
+        <mapping class="com.hibernate.data.entities.sakila.City"/>
+        <mapping class="com.hibernate.data.entities.sakila.Country"/>
+        <mapping class="com.hibernate.data.entities.sakila.Category"/>
+        <mapping class="com.hibernate.data.entities.sakila.Customer"/>
+        <mapping class="com.hibernate.data.entities.sakila.Store"/>
+        <mapping class="com.hibernate.data.entities.sakila.Film"/>
+
+        <mapping class="com.hibernate.data.entities.sakila.Language"/>
+        <mapping class="com.hibernate.data.entities.sakila.FilmCategory"/>
+        <!--<mapping class="com.hibernate.data.entities.sakila.FilmText"/>-->
+        <!--<mapping class="com.hibernate.data.entities.sakila.FilmActor"/>-->
+
+
+
 
 
     </session-factory>

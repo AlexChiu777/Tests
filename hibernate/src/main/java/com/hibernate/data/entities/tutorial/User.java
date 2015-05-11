@@ -1,9 +1,11 @@
-package com.hibernate.data.entities;
+package com.hibernate.data.entities.tutorial;
 
 import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Alex on 5/4/2015.
@@ -56,8 +58,17 @@ public class User {
     @Column(name="CREATED_BY", updatable = false)
     private String createdBy;
 
-    private Address address; //composite value type
+    @ElementCollection
+    @CollectionTable(name="USER_ADDRESS", joinColumns=@JoinColumn(name="USER_ID"))
+    @AttributeOverrides({@AttributeOverride(name="addressLine1", column=@Column(name="USER_ADDRESS_LINE_1")),
+            @AttributeOverride(name="addressLine2", column =@Column(name="USER_ADDRESS_LINE_2"))})
 
+    private List<Address> addresses = new ArrayList<Address>(); //composite value type
+
+    @Transient
+    private List<String> aliases; // collection value type
+
+    @Transient
     private User user;  //entity type
 
     //transient is used to tell hibernate to ignore the field
@@ -155,6 +166,30 @@ public class User {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
+
+    public List<String> getAliases() {
+        return aliases;
+    }
+
+    public void setAliases(List<String> aliases) {
+        this.aliases = aliases;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
