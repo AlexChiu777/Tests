@@ -18,17 +18,20 @@ public class Rental {
     @Column(name="RENTAL_DATE")
     private Timestamp rentalDate;
 
-    @Column(name="INVENTORY_ID")
-    private int inventoryId;
+    @ManyToOne
+    @JoinColumn(name="INVENTORY_ID")
+    private Inventory inventory;
 
-    @Column(name="CUSTOMER_ID")
-    private int customerId;
+    @ManyToOne
+    @JoinColumn(name="CUSTOMER_ID")
+    private Customer customer;
 
     @Column(name="RETURN_DATE")
     private Timestamp returnDate;
 
-    @Column(name="STAFF_ID")
-    private int staffId;
+    @ManyToOne
+    @JoinColumn(name="STAFF_ID")
+    private Staff staff;
 
     @Column(name="LAST_UPDATE")
     private Timestamp lastUpdate;
@@ -49,36 +52,12 @@ public class Rental {
         this.rentalDate = rentalDate;
     }
 
-    public int getInventoryId() {
-        return inventoryId;
-    }
-
-    public void setInventoryId(int inventoryId) {
-        this.inventoryId = inventoryId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
-
     public Timestamp getReturnDate() {
         return returnDate;
     }
 
     public void setReturnDate(Timestamp returnDate) {
         this.returnDate = returnDate;
-    }
-
-    public int getStaffId() {
-        return staffId;
-    }
-
-    public void setStaffId(int staffId) {
-        this.staffId = staffId;
     }
 
     public Timestamp getLastUpdate() {
@@ -88,4 +67,29 @@ public class Rental {
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Staff getStaff() {
+        return staff;
+    }
+
+    public void setStaff(Staff staff) {
+        this.staff = staff;
+    }
 }
+

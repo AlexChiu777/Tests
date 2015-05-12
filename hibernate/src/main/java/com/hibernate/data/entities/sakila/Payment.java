@@ -2,6 +2,7 @@ package com.hibernate.data.entities.sakila;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Alex on 5/10/2015.
@@ -15,14 +16,17 @@ public class Payment {
     @Column(name="PAYMENT_ID")
     private int paymentId;
 
-    @Column(name="CUSTOMER_ID")
-    private int customerId;
+    @ManyToOne
+    @JoinColumn(name="CUSTOMER_ID", updatable = false)
+    private Customer customer;
 
-    @Column(name="STAFF_ID")
-    private int staffId;
+    @OneToOne
+    @JoinColumn(name="STAFF_ID")
+    private Staff staff;
 
-    @Column(name="RENTAL_ID")
-    private int rentalId;
+    @OneToMany
+    @JoinColumn(name="RENTAL_ID")
+    private List<Rental> rentalList;
 
     @Column(name="AMOUNT")
     private float amount;
@@ -41,28 +45,28 @@ public class Payment {
         this.paymentId = paymentId;
     }
 
-    public int getCustomerId() {
-        return customerId;
+    public Customer getCustomer() {
+        return customer;
     }
 
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
-    public int getStaffId() {
-        return staffId;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setStaffId(int staffId) {
-        this.staffId = staffId;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
-    public int getRentalId() {
-        return rentalId;
+    public List<Rental> getRentalList() {
+        return rentalList;
     }
 
-    public void setRentalId(int rentalId) {
-        this.rentalId = rentalId;
+    public void setRentalList(List<Rental> rentalList) {
+        this.rentalList = rentalList;
     }
 
     public float getAmount() {

@@ -22,8 +22,9 @@ public class Staff {
     @Column(name="LAST_NAME")
     private String lastName;
 
-    @Column(name="ADDRESS_ID")
-    private int addressId;
+    @OneToOne
+    @JoinColumn(name="ADDRESS_ID")
+    private Address address;
 
     @Column(name="PICTURE")
     private Blob picture;
@@ -31,8 +32,9 @@ public class Staff {
     @Column(name="EMAIL")
     private String email;
 
-    @Column(name="STORE_ID")
-    private int storeId;
+    @OneToOne
+    @JoinColumn(name="STORE_ID")
+    private Store store;
 
     @Column(name="ACTIVE")
     private int active;
@@ -70,13 +72,6 @@ public class Staff {
         this.lastName = lastName;
     }
 
-    public int getAddressId() {
-        return addressId;
-    }
-
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
-    }
 
     public Blob getPicture() {
         return picture;
@@ -94,12 +89,20 @@ public class Staff {
         this.email = email;
     }
 
-    public int getStoreId() {
-        return storeId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Store getStore() {
+        return store;
+    }
+
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public int getActive() {

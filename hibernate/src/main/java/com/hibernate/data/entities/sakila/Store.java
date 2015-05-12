@@ -2,6 +2,7 @@ package com.hibernate.data.entities.sakila;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Alex on 5/10/2015.
@@ -15,11 +16,13 @@ public class Store {
     @Column(name="STORE_ID")
     private int storeId;
 
-    @Column(name="MANAGER_STAFF_ID")
-    private int managerStaffId;
+    @OneToOne
+    @JoinColumn(name="MANAGER_STAFF_ID", referencedColumnName = "STAFF_ID")
+    private Staff staff;
 
-    @Column(name="ADDRESS_ID")
-    private int addressId;
+    @OneToOne
+    @JoinColumn(name="ADDRESS_ID")
+    private Address address;
 
     @Column(name="LAST_UPDATE")
     private Timestamp lastUpdate;
@@ -32,20 +35,20 @@ public class Store {
         this.storeId = storeId;
     }
 
-    public int getManagerStaffId() {
-        return managerStaffId;
+    public Staff getStaff() {
+        return staff;
     }
 
-    public void setManagerStaffId(int managerStaffId) {
-        this.managerStaffId = managerStaffId;
+    public void setStaff(Staff staff) {
+        this.staff = staff;
     }
 
-    public int getAddressId() {
-        return addressId;
+    public Address getAddress() {
+        return address;
     }
 
-    public void setAddressId(int addressId) {
-        this.addressId = addressId;
+    public void setAddress(Address address) {
+        this.address = address;
     }
 
     public Timestamp getLastUpdate() {

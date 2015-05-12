@@ -3,6 +3,7 @@ package com.hibernate.data.entities.sakila;
 import javax.persistence.*;
 import java.sql.Date;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Alex on 5/10/2015.
@@ -53,6 +54,16 @@ public class Film {
 
     @Column(name="LAST_UPDATE")
     private Timestamp lastUpdate;
+
+    @OneToMany
+    @JoinTable(name="FILM_ACTOR", joinColumns = @JoinColumn(name="FILM_ID"),
+            inverseJoinColumns = @JoinColumn(name="ACTOR_ID"))
+    private List<Actor> actors;
+
+    @OneToOne
+    @JoinTable(name="FILM_CATEGORY", joinColumns = @JoinColumn(name="FILM_ID"),
+            inverseJoinColumns = @JoinColumn(name="CATEGORY_ID"))
+    private Category category;
 
     public int getFilmId() {
         return filmId;
@@ -156,5 +167,21 @@ public class Film {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public List<Actor> getActors() {
+        return actors;
+    }
+
+    public void setActors(List<Actor> actors) {
+        this.actors = actors;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 }

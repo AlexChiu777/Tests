@@ -1,6 +1,7 @@
 package com.hibernate.data.entities.sakila;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 /**
  * Created by Alex on 5/10/2015.
@@ -8,10 +9,12 @@ import javax.persistence.*;
 @Entity
 @Access(AccessType.FIELD)
 @Table(name="FILM_TEXT")
-public class FilmText {
-    @Column(name="FILM_ID")
-    private int filmId;
-
+public class FilmText implements Serializable {
+    private static final long serialVersionUID = 1L;
+    @Id
+    @OneToOne
+    @JoinColumn(name="FILM_ID")
+    private Film film;
 
     @Column(name="TITLE")
     private String title;
@@ -19,12 +22,12 @@ public class FilmText {
     @Column(name="DESCRIPTION")
     private String description;
 
-    public int getFilmId() {
-        return filmId;
+    public Film getFilm() {
+        return film;
     }
 
-    public void setFilmId(int filmId) {
-        this.filmId = filmId;
+    public void setFilm(Film film) {
+        this.film = film;
     }
 
     public String getTitle() {

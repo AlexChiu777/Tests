@@ -1,14 +1,15 @@
 package com.hibernate.data.entities.sakila;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Alex on 5/7/2015.
  */
+@Entity
+@Access(AccessType.FIELD)
+@Table(name="ACTOR")
 public class Actor {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +21,11 @@ public class Actor {
     private String lastName;
     @Column(name="LAST_UPDATE")
     private Date lastUpdate;
+
+    @OneToMany
+    @JoinTable(name="FILM_ACTOR", joinColumns = @JoinColumn(name="ACTOR_ID"),
+            inverseJoinColumns = @JoinColumn(name="FILM_ID"))
+    private List<Film> filmList;
 
     public int getActorID() {
         return actorID;

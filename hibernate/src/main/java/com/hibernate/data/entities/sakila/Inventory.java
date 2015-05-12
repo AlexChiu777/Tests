@@ -2,6 +2,7 @@ package com.hibernate.data.entities.sakila;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
+import java.util.List;
 
 /**
  * Created by Alex on 5/10/2015.
@@ -15,11 +16,13 @@ public class Inventory {
     @Column(name="INVENTORY_ID")
     private int inventoryId;
 
-    @Column(name="FILM_ID")
-    private int filmId;
+    @OneToMany
+    @JoinColumn(name="FILM_ID")
+    private List<Film> films;
 
-    @Column(name="STORE_ID")
-    private int storeId;
+    @OneToOne
+    @JoinColumn(name="STORE_ID")
+    private Store store;
 
     @Column(name="LAST_UPDATE")
     private Timestamp lastUpdate;
@@ -32,20 +35,20 @@ public class Inventory {
         this.inventoryId = inventoryId;
     }
 
-    public int getFilmId() {
-        return filmId;
+    public List<Film> getFilms() {
+        return films;
     }
 
-    public void setFilmId(int filmId) {
-        this.filmId = filmId;
+    public void setFilms(List<Film> films) {
+        this.films = films;
     }
 
-    public int getStoreId() {
-        return storeId;
+    public Store getStore() {
+        return store;
     }
 
-    public void setStoreId(int storeId) {
-        this.storeId = storeId;
+    public void setStore(Store store) {
+        this.store = store;
     }
 
     public Timestamp getLastUpdate() {

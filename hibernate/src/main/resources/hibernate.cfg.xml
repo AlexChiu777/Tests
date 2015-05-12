@@ -28,9 +28,13 @@
         <mapping class="com.hibernate.data.entities.sakila.Film"/>
 
         <mapping class="com.hibernate.data.entities.sakila.Language"/>
-        <mapping class="com.hibernate.data.entities.sakila.FilmCategory"/>
-        <!--<mapping class="com.hibernate.data.entities.sakila.FilmText"/>-->
-        <!--<mapping class="com.hibernate.data.entities.sakila.FilmActor"/>-->
+        <mapping class="com.hibernate.data.entities.sakila.FilmText"/>
+        <mapping class="com.hibernate.data.entities.sakila.Actor"/>
+
+        <mapping class="com.hibernate.data.entities.sakila.Inventory"/>
+        <mapping class="com.hibernate.data.entities.sakila.Payment"/>
+        <mapping class="com.hibernate.data.entities.sakila.Rental"/>
+        <mapping class="com.hibernate.data.entities.sakila.Staff"/>
 
 
 

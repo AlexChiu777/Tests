@@ -27,9 +27,10 @@ public class Category implements Serializable{
     @Column(name = "LAST_UPDATE")
     private Timestamp lastUpdate;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "CATEGORY_ID")
-    private List<FilmCategory> filmCategories;
+    @OneToMany
+    @JoinTable(name="FILM_CATEGORY", joinColumns = @JoinColumn(name="CATEGORY_ID"),
+            inverseJoinColumns = @JoinColumn(name="FILM_ID"))
+    private List<Film> films;
 
     public int getCategoryId() {
         return categoryId;
@@ -55,11 +56,15 @@ public class Category implements Serializable{
         this.lastUpdate = lastUpdate;
     }
 
-    public List<FilmCategory> getFilmCategories() {
-        return filmCategories;
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
     }
 
-    public void setFilmCategories(List<FilmCategory> filmCategories) {
-        this.filmCategories = filmCategories;
+    public List<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(List<Film> films) {
+        this.films = films;
     }
 }
