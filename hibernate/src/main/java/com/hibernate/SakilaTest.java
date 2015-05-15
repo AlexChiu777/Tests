@@ -35,6 +35,13 @@ public class SakilaTest {
 
             Payment payment = (Payment) session.get(Payment.class, 2);
 
+            //session.update();
+            //session.save();
+            //session.saveOrUpdate();
+            //session.delete();
+            //session.load();
+            //session.flush();
+
 
             session.close();
         } finally {

@@ -1,12 +1,17 @@
 package com.hibernate;
 
+import com.hibernate.data.entities.sakila.*;
 import com.hibernate.data.entities.tutorial.Address;
 import com.hibernate.data.entities.tutorial.User;
 import com.hibernate.utils.HibernateUtil;
+import org.hibernate.Query;
 import org.hibernate.Session;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+import java.util.Scanner;
 
 /**
  * Created by Alex on 5/5/2015.
@@ -18,7 +23,7 @@ public class Application {
 
         // new user
 
-        Address address = new Address();
+        /*Address address = new Address();
         address.setAddressLine1("line1");
         address.setAddressLine2("line2");
         address.setCity("city");
@@ -44,8 +49,25 @@ public class Application {
         user.setLastUpdatedDate(new Date());
         user.getAddresses().add(address);
         user.getAddresses().add(address1);
-        session.save(user);
+        session.save(user);*/
 
+        /*Currency currency = new Currency();
+        currency.setName("US Dollar");
+        currency.setCountryName("United States");
+
+        Market market = new Market();
+        market.setMarketName("London Stock Exhcange");
+        market.setCurrency(currency);
+
+        session.persist(market);
+        session.getTransaction().commit();
+
+        Session session2 = HibernateUtil.INSTANCE.getSessionFactory().openSession();
+        session2.getTransaction().begin();
+
+        //Currency dbCurrency = (Currency) session2.get(Currency.class, new CurrencyId("Dollar", "United States"));
+        Market dbMarket = (Market) session2.get(Market.class, market.getMarketId());
+        System.out.println(dbMarket.getCurrency().getName());*/
 
 
 
@@ -80,10 +102,42 @@ public class Application {
 
 
 
-        session.getTransaction().commit();
+//        session.getTransaction().commit();
+
+        //HQL
+
+        /*Scanner scanner = new Scanner(System.in);
+        Query query = session.createQuery("select t from Film t " +
+                "where t.length < :length");
+        System.out.println("Please specify length");
+        query.setParameter("length", new Integer(scanner.next()));
+        List<Film> filmList = query.list();
+
+        for (Film f : filmList) {
+            System.out.println(f.getTitle());
+        }*/
+
+        Query query = null;
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("YYYY-MM-dd");
+            query = session.createQuery("select distinct t.actors from Film t join t.actors where t.releaseYear > :year");
+            query.setDate("year", sdf.parse("1999-01-01"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        List<Actor> actorList = query.list();
+
+        for (Actor f : actorList) {
+            System.out.println(f.getFirstName());
+        }
 
 
 
+
+
+
+//        session2.close();
         session.close();
 
 

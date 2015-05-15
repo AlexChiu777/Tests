@@ -36,6 +36,9 @@
         <mapping class="com.hibernate.data.entities.sakila.Rental"/>
         <mapping class="com.hibernate.data.entities.sakila.Staff"/>
 
+        <mapping class="com.hibernate.data.entities.sakila.Currency"/>
+        <mapping class="com.hibernate.data.entities.sakila.Market"/>
+
 
 
 
